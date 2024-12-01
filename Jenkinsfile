@@ -7,7 +7,7 @@ pipeline {
     }
 
     tools {
-        nodejs "NodeJS 14" // Use the configured NodeJS installation
+        nodejs "NodeJS 20" // Use the configured NodeJS installation
     }
 
     stages {
