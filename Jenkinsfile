@@ -6,6 +6,10 @@ pipeline {
         BRANCH_NAME = 'master' // Set the branch that we want to build
     }
 
+    tools {
+        nodejs "NodeJS 14" // Use the configured NodeJS installation
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
