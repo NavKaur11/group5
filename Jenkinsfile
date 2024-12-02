@@ -6,10 +6,6 @@ pipeline {
         BRANCH_NAME = 'master' // Set the branch that we want to build
     }
 
-    tools {
-        nodejs "NodeJS 20.17.0" // Ensure this matches the configured NodeJS installation name
-    }
-
     stages {
         stage('Checkout Code') {
             steps {
@@ -17,29 +13,14 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                script {
-                    // Install necessary dependencies, for example, for a Node.js project:
-                    sh 'npm install'
-                }
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                script {
-                    // Run tests, for example, for a Node.js project:
-                    sh 'npm test'
-                }
-            }
-        }
+        // Add your specific build steps here
 
         stage('Build Project') {
             steps {
                 script {
-                    // Build the project
-                    sh 'npm run build'
+                    // Add your build commands here
+                    echo 'Building the project...'
+                    // Example: sh 'make' (if using a Makefile)
                 }
             }
         }
