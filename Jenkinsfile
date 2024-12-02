@@ -1,37 +1,34 @@
 pipeline {
     agent any
+
+    environment {
+        GIT_REPO = 'https://github.com/NavKaur11/group5.git'
+        BRANCH_NAME = 'master' // Set the branch that we want to build
+    }
+
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
-                // Clone the repository
-                checkout scm
+                git url: "${GIT_REPO}", branch: "${BRANCH_NAME}"
             }
         }
-        stage('Build') {
+
+        stage('Build Project') {
             steps {
-                // Example build step for a Node.js project
-                sh 'npm install'
-            }
-        }
-        stage('Test') {
-            steps {
-                // Example test step
-                sh 'npm test'
-            }
-        }
-        stage('Package') {
-            steps {
-                // Example package step
-                sh 'npm run build'
+                script {
+                    // Add your build commands here
+                    echo 'Building the project...'
+                }
             }
         }
     }
+
     post {
         success {
             echo 'Build succeeded!'
         }
         failure {
-            echo 'Build failed!'
+            echo 'Build failed.'
         }
     }
 }
