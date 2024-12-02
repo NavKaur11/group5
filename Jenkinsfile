@@ -17,6 +17,15 @@ pipeline {
             }
         }
 
+        stage('Verify Files') {
+            steps {
+                script {
+                    // List the files in the workspace to ensure package.json is present
+                    sh 'ls -l'
+                }
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 script {
@@ -54,3 +63,4 @@ pipeline {
         }
     }
 }
+
