@@ -1,21 +1,45 @@
 pipeline {
     agent any
 
+    environment {
+        GIT_REPO = 'https://github.com/NavKaur11/group5.git'
+        BRANCH_NAME = 'master' // Set the branch that we want to build
+    }
+
     tools {
-        nodejs "NodeJS 20" // Replace with the actual name you configured in Jenkins
+        nodejs "NodeJS 20.17.0" // Ensure this matches the configured NodeJS installation name
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                git url: 'https://github.com/NavKaur11/group5.git', branch: 'master'
+                git url: "${GIT_REPO}", branch: "${BRANCH_NAME}"
             }
         }
 
         stage('Install Dependencies') {
             steps {
                 script {
-                    sh 'npm --version'
+                    // Install necessary dependencies, for example, for a Node.js project:
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                script {
+                    // Run tests, for example, for a Node.js project:
+                    sh 'npm test'
+                }
+            }
+        }
+
+        stage('Build Project') {
+            steps {
+                script {
+                    // Build the project
+                    sh 'npm run build'
                 }
             }
         }
@@ -23,10 +47,10 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline succeeded!'
+            echo 'Build succeeded!'
         }
         failure {
-            echo 'Pipeline failed.'
+            echo 'Build failed.'
         }
     }
 }
