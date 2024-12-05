@@ -14,7 +14,6 @@ pipeline {
                 // Install project dependencies using npm
                 script {
                     sh 'npm install'
-                    sh 'npm install -g jest'  // Install Jest globally
                 }
             }
         }
