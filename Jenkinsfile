@@ -8,21 +8,23 @@ pipeline {
                 git 'https://github.com/NavKaur11/group5.git'
             }
         }
-        
+
         stage('Install Dependencies') {
             steps {
-                // Install project dependencies using npm
-                script {
-                    sh 'npm install'
+                // Navigate to the navneetReact directory and install project dependencies using npm
+                dir('navneetReact') {
+                    script {
+                        sh 'npm install'
+                    }
                 }
             }
         }
 
         stage('Run Tests') {
             steps {
-                // Run the tests using Jest
+                // Run tests globally (outside of navneetReact directory)
                 script {
-                     // Ensure proper permissions
+                    // Ensure proper permissions and run Jest
                     sh 'chmod -R 777 node_modules'
                     sh 'npx jest'
                 }
@@ -31,9 +33,11 @@ pipeline {
 
         stage('Build React App') {
             steps {
-                // Build the React project for production
-                script {
-                    sh 'npm run build'
+                // Navigate to the navneetReact directory and build the React project for production
+                dir('navneetReact') {
+                    script {
+                        sh 'npm run build'
+                    }
                 }
             }
         }
