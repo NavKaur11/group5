@@ -12,7 +12,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 // Navigate to the navneetReact directory and install project dependencies using npm
-                dir('navneetReact') {
+                dir('reactNavneetKaur') {
                     script {
                         sh 'npm install'
                     }
@@ -22,7 +22,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                // Run tests globally (outside of navneetReact directory)
+                // Run tests globally 
                 script {
                     // Ensure proper permissions and run Jest
                     sh 'chmod -R 777 node_modules'
@@ -34,7 +34,7 @@ pipeline {
         stage('Build React App') {
             steps {
                 // Navigate to the navneetReact directory and build the React project for production
-                dir('navneetReact') {
+                dir('reactNavneetKaur') {
                     script {
                         sh 'npm run build'
                     }
