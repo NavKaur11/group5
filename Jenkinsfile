@@ -14,6 +14,7 @@ pipeline {
                 // Install project dependencies using npm
                 script {
                     sh 'npm install'
+                    sh 'npm install -g jest'  // Install Jest globally
                 }
             }
         }
@@ -22,6 +23,8 @@ pipeline {
             steps {
                 // Run the tests using Jest
                 script {
+                     // Ensure proper permissions
+                    sh 'chmod -R 777 node_modules'
                     sh 'npx jest'
                 }
             }
